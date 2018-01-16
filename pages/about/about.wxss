@@ -1,0 +1,31 @@
+
+.about-title {
+    font-size: 50rpx;
+    line-height: 1.2;
+    font-weight:normal;
+    outline: none;
+    color: #21759b;
+    margin-bottom:25rpx;
+    text-align:center
+}
+
+.about-summary{
+  font-size: 35rpx;  
+  line-height:1.8rem;
+  text-align:center
+  
+}
+
+.about-desc{
+  font-size: 35rpx;  
+  line-height:1.8rem;
+  text-align:left;
+  margin-top: 20rpx
+
+}
+
+.about-article {
+    margin-bottom: 1.142857143rem ;
+    
+}
+

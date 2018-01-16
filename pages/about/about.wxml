@@ -1,0 +1,35 @@
+<import src="../../templates/header.wxml" />
+<view class="container">
+  <template is="tempHeader" />
+  <view class="about-article ">
+    <view class="about-title">
+      关于“蔡妈看看”
+    </view>
+    
+     <view class="about-desc">
+      “蔡妈看看”官方小程序采用WordPress rest api作为后端服务,将微信小程序和WordPress结合，通过微信小程序访问WordPress网站。
+    </view>
+
+    <view class="about-desc">
+      “蔡妈看看”官方小程序部分采用了开源的产品的代码,秉承开源思想,本程序是开放源代码的。
+    </view>
+
+    <view class="about-desc">
+      github：https://github.com/admxj/weixin-app-admxj
+    </view>
+     <view class="about-desc">
+      开源协议：MIT
+    </view>
+
+    <view class="about-desc">
+      技术支持网站：https://www.admxj.com
+    </view>
+
+    <view class="about-desc">
+      开发者：admxj
+    </view>
+    <view class="about-desc">
+      微信号：adm_xj
+    </view>
+  </view>
+</view>
