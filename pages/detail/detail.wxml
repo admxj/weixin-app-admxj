@@ -1,62 +1,61 @@
-
 <import src="../../wxParse/wxParse.wxml" />
 <import src="../../templates/header.wxml" />
-<view class="container"> 
-<scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
+<import src="../../templates/footer.wxml" />
+<view class="container">
+  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
 
-  <view class="content-article-detail" style="display:{{display}}">
-    <view class="entry-title">
-      {{detail.title.rendered}}
-    </view>
-    <view class="detail-date">
-      <image src="../../images/calendar.png" style="height:32rpx;width:32rpx"></image>
-      {{detailDate}}
-    </view>
-    <view class="entry-summary">
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-    </view>
-  </view>
-
-  <view style="display:{{display}}">
-    <view class="commentheader">
-      {{commentCount}}
-    </view>
-    <block wx:key="id" wx:for="{{commentsList}}">
-      <view class="comment">
-
-        <view class="comment-user">
-         <image src="{{item.author_url}}" class="gravatarImg"></image>
-         {{item.author_name}} </view>
-        <view class="comment-date"> {{item.date}} </view>
-        <view class="comment-summary"> {{item.summary}}</view>
+    <view class="content-article-detail" style="display:{{display}}">
+      <view class="entry-title">
+        {{detail.title.rendered}}
       </view>
-
-      
-    </block>
-
-    <view style="display:{{floatDisplay}}">
-    <view  class="more-comment"  bindtap="loadMore" hidden="{{isLastPage}}">
-    点击加载更多评论...   
+      <view class="detail-date">
+        <image src="../../images/calendar.png" style="height:32rpx;width:32rpx"></image>
+        {{detailDate}}
+      </view>
+      <view class="entry-summary">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      </view>
     </view>
 
-    <view class="no-more-comment" hidden="{{!isLastPage}}">无更多评论...</view>
-    </view>
-
-    <form catchsubmit="formSubmit">
-      <view class="comment-respond">
-        <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />       
-
-        <view class="comment-post">
-         <input class="comment-input" maxlength="30" name="inputComment" placeholder="输入评论" /> <button class="comment-button" formType="submit" size="mini">发表评论</button>
+    <view style="display:{{display}}">
+      <view class="commentheader">
+        {{commentCount}}
+      </view>
+      <block wx:key="id" wx:for="{{commentsList}}">
+        <view class="comment">
+          <view class="comment-user">
+            <image src="{{item.author_url}}" class="gravatarImg"></image>
+            {{item.author_name}} </view>
+          <view class="comment-date"> {{item.date}} </view>
+          <view class="comment-summary"> {{item.summary}}</view>
         </view>
 
+
+      </block>
+
+      <view style="display:{{floatDisplay}}">
+        <view class="more-comment" bindtap="loadMore" hidden="{{isLastPage}}">
+          点击加载更多评论...
+        </view>
+        <view class="no-more-comment" hidden="{{!isLastPage}}">无更多评论...</view>
       </view>
-    </form>
 
-    <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+      <form catchsubmit="formSubmit">
+        <view class="comment-respond">
+          <input class="comment-input" 
+            maxlength="50" name="inputPostID" 
+            value="{{detail.id}}" style="display:none" />
 
-  </view>
-
+          <view class="comment-post">
+            <input class="comment-input" maxlength="30" name="inputComment" placeholder="输入评论" />
+            <button class="comment-button" formType="submit" size="mini">发表评论</button>
+          </view>
+        </view>
+      </form>
+      <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">
+        {{dialog.content}}</modal>
+    </view>
+    <template is="tempFooter" />
   </scroll-view>
 
 </view>

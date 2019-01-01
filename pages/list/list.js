@@ -170,11 +170,11 @@ Page({
 
           setTimeout(function () {
             wx.hideLoading();
-            wx.showToast({
-              title: '加载完毕',
-              icon: 'success',
-              duration: 900
-            })
+            // wx.showToast({
+            //   title: '加载完毕',
+            //   icon: 'success',
+            //   duration: 900
+            // })
           }, 900);
 
         }

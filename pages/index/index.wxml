@@ -1,11 +1,9 @@
 
 <import src="../../templates/header.wxml" />
-
 <view class="container">
-
   <!-- 侧滑菜单-->
   <view class="slide-mask" style="display:{{maskDisplay}}" bindtap="slideCloseEvent"></view>
-  <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px;" animation="{{slideAnimation}}">
+  <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px; top:-1px" animation="{{slideAnimation}}">
     <scroll-view scroll-y="true" style="height:100%;width:100%">
       <view class="header">
       <!--
@@ -53,9 +51,7 @@
   <!-- 侧滑菜单  -->
 
 
-  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true"  lower-threshold="100rpx">
-
-
+  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="loadMore"  lower-threshold="100rpx">
     <view class="header" style="display:{{displayHeader}}">
     <image src="../../images/logo.jpg" style="height:400rpx;width:400rpx"></image>
     <view>
@@ -92,11 +88,15 @@
       </block>
     </view>
     <view  class="more" style="display:{{floatDisplay}}">
-    <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>      
+    <text class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</text>
     </view>
   </scroll-view>
 
-  <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent" style="display:{{floatDisplay}}">
+  <view class="float-action" 
+    bindtap="ballClickEvent" 
+    style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" 
+    bindtouchmove="ballMoveEvent" 
+    style="display:{{floatDisplay}}">
     <text class="float-action-title">导航</text>
   </view> 
 

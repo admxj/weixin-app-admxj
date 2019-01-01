@@ -46,14 +46,14 @@ Page({
       }
     });
 
-    //获取用户信息
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      self.setData({
-        userInfo: userInfo,
-        isGetUserInfo:true
-      })
-    });
+    // //获取用户信息
+    // app.getUserInfo(function (userInfo) {
+    //   //更新数据
+    //   self.setData({
+    //     userInfo: userInfo,
+    //     isGetUserInfo:true
+    //   })
+    // });
   },
   onShareAppMessage: function () {
     return {
@@ -68,24 +68,23 @@ Page({
     }
   },
   //获取文章内容
-  fetchDetailData: function (id) {
+  fetchDetailData: function(id) {
     var self = this;
-   
     wx.request({
       url: Api.getPostByID(id, { mdrender: false }),
       success: function (response) {
-        //console.log(response);
+        console.log(response);
         self.setData({
           detail: response.data,
           postID: id,
           detailDate: util.cutstr(response.data.date, 10, 1),
-          //wxParseData: WxParse('md',response.data.content.rendered)
+          //wxParseData: WxParse('md',response.data.content.rendered),
           wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
           display: 'block'
 
         });
 
-        self.fetchCommentData(self.data);       
+        //self.fetchCommentData(self.data);       
       }
     });
   },

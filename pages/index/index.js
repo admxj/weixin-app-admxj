@@ -13,15 +13,15 @@ Page({
     postsShowSwiperList: {},
 
 
-    isLastPage:false,
-    
+    isLastPage: false,
+
     page: 1,
     search: '',
     categories: 0,
 
     scrollHeight: 0,
 
-    displayHeader:"none",
+    displayHeader: "none",
     displaySwiper: "block",
     floatDisplay: "none",
 
@@ -62,7 +62,7 @@ Page({
   onReachBottom: function () {
 
     //console.log("xialajiazai");  
-   
+
   },
   onLoad: function (options) {
     var self = this;
@@ -79,7 +79,7 @@ Page({
     }
 
     this.fetchTopFivePosts();
-    
+
 
     wx.getSystemInfo({
       success: function (res) {
@@ -95,7 +95,7 @@ Page({
     });
   },
 
-  
+
   fetchTopFivePosts: function () {
     var self = this;
     self.setData({
@@ -122,7 +122,7 @@ Page({
         else {
           self.setData({
             displaySwiper: "none",
-            displayHeader:"block"
+            displayHeader: "block"
 
           });
 
@@ -148,7 +148,7 @@ Page({
   fetchPostsData: function (data) {
     var self = this;
 
-    
+
     if (!data) data = {};
     if (!data.page) data.page = 1;
     if (!data.categories) data.categories = 0;
@@ -169,8 +169,7 @@ Page({
 
         if (response.statusCode === 200) {
 
-          if (response.data.length<6)
-          {
+          if (response.data.length < 6) {
             self.setData({
               isLastPage: true
             });
@@ -179,7 +178,7 @@ Page({
           //console.log(response);       
           self.setData({
             //postsList: response.data
-           
+
             floatDisplay: "block",
             postsList: self.data.postsList.concat(response.data.map(function (item) {
               //var strSummary = util.removeHTML(item.content.rendered);
@@ -194,47 +193,44 @@ Page({
 
 
           if (data.page == 1) {
-            
+
             self.fetchCategoriesData();
           }
 
+          wx.hideLoading();
+          // setTimeout(function () {
+          //   wx.hideLoading();
+          //   wx.showToast({
+          //     title: '加载完毕',
+          //     icon: 'success',
+          //     duration: 900
+          //   })
+          // }, 900)
 
-          setTimeout(function () {
-            wx.hideLoading();
-            wx.showToast({
-              title: '加载完毕',
-              icon: 'success',
-              duration: 900
-            })
-          }, 900)
-         
 
         }
-        else
-        {
+        else {
 
-        
-          if (response.data.code =="rest_post_invalid_page_number")
-          {
+
+          if (response.data.code == "rest_post_invalid_page_number") {
 
             self.setData({
-              isLastPage:true
+              isLastPage: true
             });
             wx.showToast({
               title: '没有更多内容',
-              mask:false,
+              mask: false,
               duration: 1500
             });
           }
-          else
-          {
+          else {
             wx.showToast({
               title: response.data.message,
               duration: 1500
             })
           }
 
-          
+
 
         }
 
@@ -245,18 +241,16 @@ Page({
   },
   //底部刷新
   loadMore: function (e) {
-    
+
     var self = this;
-    if (!self.data.isLastPage)
-    {
+    if (!self.data.isLastPage) {
       self.setData({
         page: self.data.page + 1
       });
       console.log('当前页' + self.data.page);
       this.fetchPostsData(self.data);
     }
-    else
-    {
+    else {
       wx.showToast({
         title: '没有更多内容',
         mask: false,
@@ -356,7 +350,7 @@ Page({
 //侧栏展开
 function slideUp() {
   var animation = wx.createAnimation({
-    duration: 600
+    duration: 300
   });
   this.setData({ maskDisplay: 'block' });
   animation.translateX('100%').step();

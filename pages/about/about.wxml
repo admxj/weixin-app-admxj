@@ -1,4 +1,5 @@
 <import src="../../templates/header.wxml" />
+<import src="../../templates/footer.wxml" />
 <view class="container">
   <template is="tempHeader" />
   <view class="about-article ">
@@ -32,4 +33,5 @@
       微信号：adm_xj
     </view>
   </view>
+  <template is="tempFooter" />
 </view>

@@ -1,7 +1,7 @@
 <template name="tempFooter"> 
-  <view class="header">    
+  <view class="footer">    
     <view>
-      © 2015-2017 蔡妈看看 admxj.com is proudly powered by WordPress
+      © 2015-2018 蔡妈看看 admxj.com is proudly powered by WordPress
     </view>
   </view>
 </template>
