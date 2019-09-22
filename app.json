@@ -11,8 +11,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#5fcce6",
     "navigationBarTitleText": "蔡妈看看",
-    "navigationBarTextStyle": "#fff"
-   
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -39,5 +38,6 @@
     "connectSocket": 10000,
     "uploadFile": 10000,
     "downloadFile": 10000
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
