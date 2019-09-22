@@ -62,9 +62,6 @@ module.exports = {
   postComment: function () {
     return HOST_URI + 'comments'
   },
-
-   
-
   //获取文章的第一个图片地址,如果没有给出默认图片
   getContentFirstImage: function (content){
     var regex = /<img.*?src=[\'"](.*?)[\'"].*?>/i;
@@ -72,7 +69,6 @@ module.exports = {
     var src ="../../images/watch-life-logo-128.jpg";
     if(arrReg){   
       src=arrReg[1];
-      console.log(src);
     }
     return src;  
   }

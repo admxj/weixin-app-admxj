@@ -1,4 +1,16 @@
-
+/**
+ * html2Json 改造来自: https://github.com/Jxck/html2json
+ * 
+ * 
+ * author: Di (微信小程序开发工程师)
+ * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
+ *               垂直微信小程序开发交流社区
+ * 
+ * github地址: https://github.com/icindy/wxParse
+ * 
+ * for: 微信小程序富文本解析
+ * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
+ */
 
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
@@ -41,10 +53,19 @@ function removeDOCTYPE(html) {
         .replace(/<.*!DOCTYPE.*\>\n/, '');
 }
 
+function trimHtml(html) {
+  return html
+        .replace(/\r?\n+/g, '')
+        .replace(/<!--.*?-->/ig, '')
+        .replace(/\/\*.*?\*\//ig, '')
+        .replace(/[ ]+</ig, '<')
+}
+
 
 function html2json(html, bindName) {
     //处理字符串
     html = removeDOCTYPE(html);
+    html = trimHtml(html);
     html = wxDiscode.strDiscode(html);
     //生成node节点
     var bufArray = [];
@@ -88,14 +109,14 @@ function html2json(html, bindName) {
                     var name = attr.name;
                     var value = attr.value;
                     if (name == 'class') {
-                      console.log(value);
-                      //  value = value.join("")
-                      node.classStr = value;
+                        console.dir(value);
+                        //  value = value.join("")
+                        node.classStr = value;
                     }
                     // has multi attibutes
                     // make it array of attribute
                     if (name == 'style') {
-                      console.log(value);
+                        console.dir(value);
                         //  value = value.join("")
                         node.styleStr = value;
                     }
@@ -163,7 +184,7 @@ function html2json(html, bindName) {
             }
             
             if (unary) {
-                // if this tag dosen't have end tag
+                // if this tag doesn't have end tag
                 // like <img src="hoge.png"/>
                 // add to parents
                 var parent = bufArray[0] || results;
@@ -184,7 +205,7 @@ function html2json(html, bindName) {
             //当有缓存source资源时于于video补上src资源
             if(node.tag === 'video' && results.source){
                 node.attr.src = results.source;
-                delete result.source;
+                delete results.source;
             }
             
             if (bufArray.length === 0) {
@@ -206,6 +227,8 @@ function html2json(html, bindName) {
             };
             
             if (bufArray.length === 0) {
+                node.index = index.toString()
+                index += 1
                 results.nodes.push(node);
             } else {
                 var parent = bufArray[0];

@@ -76,13 +76,12 @@ Page({
           detail: response.data,
           postID: id,
           detailDate: util.cutstr(response.data.date, 10, 1),
-          //wxParseData: WxParse('md',response.data.content.rendered),
-          wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
+          // wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
           display: 'block'
 
         });
-
-        //self.fetchCommentData(self.data);       
+        WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
+        self.fetchCommentData(self.data);
       }
     });
   },
